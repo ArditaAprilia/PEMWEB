@@ -1,0 +1,46 @@
+@startuml
+title Flowchart Sistem Website Pencatatan Kehadiran dan Nilai Siswa
+
+start
+
+:User membuka halaman login;
+
+partition Admin {
+    :Login sebagai Admin?;
+    if (Login berhasil?) then (Ya)
+        :Akses Dashboard Admin;
+        repeat
+            :Pilih Menu:
+            --> Kelola Data Kelas
+            --> Kelola Data Siswa
+            --> Input Kehadiran
+            --> Input Nilai
+            :CRUD Data sesuai pilihan;
+        repeat while (Masih mengelola data?) is (Ya)
+        :Logout;
+        stop
+    else (Tidak)
+        :Tampilkan error login;
+        stop
+    endif
+}
+
+partition Siswa {
+    :Login sebagai Siswa?;
+    if (Login berhasil?) then (Ya)
+        :Akses Dashboard Siswa;
+        repeat
+            :Pilih Menu:
+            --> Lihat Kehadiran
+            --> Lihat Nilai
+            :Tampilkan Data sesuai pilihan;
+        repeat while (Masih melihat data?) is (Ya)
+        :Logout;
+        stop
+    else (Tidak)
+        :Tampilkan error login;
+        stop
+    endif
+}
+
+@enduml
